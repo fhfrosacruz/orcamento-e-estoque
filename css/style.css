@@ -1,0 +1,41 @@
+
+#listar_clientes {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+  align: center;
+}
+
+#listar_clientes td, #listar_clientes th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#listar_clientes tr:nth-child(even){background-color: #f2f2f2;}
+
+#listar_clientes tr:hover {background-color: #ddd;}
+
+#listar_clientes th {
+  padding-top: 2px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #4CAF50;
+  color: white;
+}
+
+formbotao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.pesq{
+  text-align: right;
+  width: 90%;
+}
+
+
+input {
+  text-transform: uppercase;
+}
