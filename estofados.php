@@ -528,7 +528,7 @@ function verifica_dados() {
   //var z = document.getElementById('estoque').value;
 
     if (x == "" && y == "" || x != "" && y != "") {
-         alert("VOCE DEVE GERAR UM ORÇAMENTO PRA UM CLIENTE OU EMPRESA");
+         alert("VOCE DEVE GERAR UM ORÇAMENTO PRA UM CLIENTE OU EMPRESA, NÃO PARA OS DOIS");
         // alert(z);
         return false;
       }else {
