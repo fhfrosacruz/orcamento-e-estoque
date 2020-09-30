@@ -9,7 +9,7 @@ require './conexao/banco.php';
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
-  align: center;
+  text-align: center;
 }
 
 </style>
@@ -314,7 +314,7 @@ require './conexao/banco.php';
 
 <script>
 
-<!-- inicio assento -->
+// inicio assento -->
  $("#tecido_assento").change(function() {
     $('#seguraca_assentos').hide();
     if(this.value != "")
@@ -340,10 +340,10 @@ require './conexao/banco.php';
 
  });
 
-<!-- fim assento -->
+// fim assento 
 
 
-<!-- inicio encosto -->
+// inicio encosto -->
 $("#tecido_encosto").change(function() {
    $('#seguraca_encostos').hide();
    if(this.value != "")
@@ -369,9 +369,9 @@ $("#tecido_encosto").change(function() {
 
  });
 
- <!-- fim encosto -->
+ // fim encosto -->
 
-<!-- inicio teto -->
+// inicio teto -->
  $("#tecido_teto").change(function() {
     $('#seguranca_teto').hide();
     if(this.value != "")
@@ -379,9 +379,9 @@ $("#tecido_encosto").change(function() {
 
  });
 
-<!-- fim teto -->
+// fim teto -->
 
-<!-- inicio piso -->
+// inicio piso -->
  $("#tecido_piso").change(function() {
     $('#seguranca_piso').hide();
     if(this.value != "")
@@ -389,7 +389,7 @@ $("#tecido_encosto").change(function() {
 
  });
 
-<!-- fim piso -->
+// fim piso -->
 function verifica_dados() {
   var x = document.getElementById('cliente_orca').value;
   var y = document.getElementById('empresa_orca').value;

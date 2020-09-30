@@ -9,7 +9,7 @@ require './conexao/banco.php';
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
-  align: center;
+  text-align: center;
 }
 
 </style>
@@ -426,7 +426,7 @@ require './conexao/banco.php';
 </div>
 
 <script>
-<!-- inicio almofada -->
+// inicio almofada
  $("#almofada_botao").change(function() {//id select
     $('#qto_almofada').hide(); // id da div
     if(this.value != "") //value do select
@@ -451,10 +451,10 @@ require './conexao/banco.php';
       $('#seguraca_almofadas').show();
 
  });
-<!-- fim almofada -->
+// fim almofada 
 
 
-<!-- inicio assento -->
+// inicio assento 
  $("#tecido_assento").change(function() {
     $('#seguraca_assentos').hide();
     if(this.value != "")
@@ -480,10 +480,10 @@ require './conexao/banco.php';
 
  });
 
-<!-- fim assento -->
+// fim assento 
 
 
-<!-- inicio encosto -->
+// inicio encosto
 $("#tecido_encosto").change(function() {
    $('#seguraca_encostos').hide();
    if(this.value != "")
@@ -509,9 +509,9 @@ $("#tecido_encosto").change(function() {
 
  });
 
- <!-- fim encosto -->
+// fim encosto 
 
-<!-- inicio estrutura -->
+// inicio estrutura 
  $("#estrutura").change(function() {
     $('#medidas_estrutura').hide();
     if(this.value != "")
@@ -519,7 +519,7 @@ $("#tecido_encosto").change(function() {
 
  });
 
- <!-- fim estrutura -->
+ // fim estrutura 
 
 
 function verifica_dados() {

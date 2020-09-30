@@ -106,7 +106,7 @@ $html.= "</html>";
 
 
 // Carrega seu HTML
-$dompdf->load_html($html);
+$dompdf->$html; // deprecated $dompdf->load_html($html);
 
 
 $dompdf->setPaper('A4', 'portrait'); //para paisagem trocar 'portrait' para 'landscape'

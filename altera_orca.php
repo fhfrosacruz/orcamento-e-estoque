@@ -11,7 +11,7 @@ $id = $_POST['altera_orca'];
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
-  align: center;
+  text-align: center;
 }
 
 </style>
@@ -432,7 +432,7 @@ $id = $_POST['altera_orca'];
 </div>
 
 <script>
-<!-- inicio almofada -->
+// inicio almofada 
  $("#almofada_botao").change(function() {//id select
     $('#qto_almofada').hide(); // id da div
     if(this.value != "") //value do select
@@ -457,10 +457,10 @@ $id = $_POST['altera_orca'];
       $('#seguraca_almofadas').show();
 
  });
-<!-- fim almofada -->
+//fim almofada
 
 
-<!-- inicio assento -->
+// inicio assento
  $("#tecido_assento").change(function() {
     $('#seguraca_assentos').hide();
     if(this.value != "")
@@ -486,10 +486,10 @@ $id = $_POST['altera_orca'];
 
  });
 
-<!-- fim assento -->
+// fim assento
 
 
-<!-- inicio encosto -->
+// inicio encosto
 $("#tecido_encosto").change(function() {
    $('#seguraca_encostos').hide();
    if(this.value != "")
@@ -515,9 +515,9 @@ $("#tecido_encosto").change(function() {
 
  });
 
- <!-- fim encosto -->
+ //fim encosto
 
-<!-- inicio estrutura -->
+// inicio estrutura
  $("#estrutura").change(function() {
     $('#medidas_estrutura').hide();
     if(this.value != "")
@@ -525,7 +525,7 @@ $("#tecido_encosto").change(function() {
 
  });
 
- <!-- fim estrutura -->
+ //fim estrutura
 
 
 </script>
