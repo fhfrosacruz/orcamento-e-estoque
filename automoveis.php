@@ -28,32 +28,36 @@ require './conexao/banco.php';
   <table>
   <tr>
     <td>
-    <label class="control-label">CLIENTE:</label>
-    <select name="cliente_orca" class="form-control" id="cliente_orca">
-      <option value=""></option>
-      <?php
-      $sql = "SELECT * FROM pessoa p LEFT JOIN funcionario f ON f.pessoa_id = p.id_pessoa WHERE f.id_funcionario IS NULL";
-      $result_sql = mysqli_query($conn, $sql);
+      <div id="esconder_cli" display:none; nome="esconder_cli">
+        <label class="control-label">CLIENTE:</label>
+        <select name="cliente_orca" class="form-control" id="cliente_orca" onclick="Mudarestado_emp('esconder_emp')">
+          <option value=""></option>
+          <?php
+          $sql = "SELECT * FROM pessoa p LEFT JOIN funcionario f ON f.pessoa_id = p.id_pessoa WHERE f.id_funcionario IS NULL";
+          $result_sql = mysqli_query($conn, $sql);
 
-      while ($cliente_orca = mysqli_fetch_array($result_sql)) {?>
-        <option value="<?php echo $cliente_orca['nome']; ?>"><?php echo $cliente_orca['nome']; ?></option><?php
-      }
-      ?>
-    </select>
+          while ($cliente_orca = mysqli_fetch_array($result_sql)) {?>
+            <option value="<?php echo $cliente_orca['nome']; ?>"><?php echo $cliente_orca['nome']; ?></option><?php
+          }
+          ?>
+        </select>
+      </div>
     </td>
-  <td>
-    <label class="control-label">EMPRESA:</label>
-    <select name="empresa_orca" class="form-control" id="empresa_orca">
-      <option value=""></option>
-      <?php
-      $sql = "SELECT * FROM empresa";
-      $result_sql = mysqli_query($conn, $sql);
+   <td>
+      <div id="esconder_emp" display:none; nome="esconder_emp">
+        <label class="control-label">EMPRESA:</label>
+        <select name="empresa_orca" class="form-control" id="empresa_orca" onclick="Mudarestado_cli('esconder_cli')">
+          <option value=""></option>
+          <?php
+          $sql = "SELECT * FROM empresa";
+          $result_sql = mysqli_query($conn, $sql);
 
-      while ($empresa_orca = mysqli_fetch_array($result_sql)) {?>
-        <option value="<?php echo $empresa_orca['razao_social']; ?>"><?php echo $empresa_orca['razao_social']; ?></option><?php
-      }
-      ?>
-    </select>
+          while ($empresa_orca = mysqli_fetch_array($result_sql)) {?>
+            <option value="<?php echo $empresa_orca['razao_social']; ?>"><?php echo $empresa_orca['razao_social']; ?></option><?php
+          }
+          ?>
+        </select>
+      </div>
     </td>
     <td>
 
@@ -389,20 +393,28 @@ $("#tecido_encosto").change(function() {
 
  });
 
-// fim piso -->
-function verifica_dados() {
-  var x = document.getElementById('cliente_orca').value;
-  var y = document.getElementById('empresa_orca').value;
-  //var z = document.getElementById('estoque').value;
+// fim piso
 
-    if (x == "" && y == "" || x != "" && y != "") {
-         alert("VOCE DEVE GERAR UM ORÇAMENTO PRA UM CLIENTE OU EMPRESA");
-        // alert(z);
-        return false;
-      }else {
+//funções para esconder um ou outro tipo de cliente, para se gerar um orçamento, por o orçamento é gerado para um cliente ou uma empresa
 
-            //$("#estoque").is(':checked');
-      }
+function Mudarestado_emp(el) { //esconde a empresa
+        var x = document.getElementById('cliente_orca').value;
+               
+       
+        if(x == "")
+            document.getElementById(el).style.display = 'block';
+        else
+            document.getElementById(el).style.display = 'none';        
+    }
+
+    function Mudarestado_cli(el) { //esconde o cliente
+        
+        var y = document.getElementById('empresa_orca').value;       
+        
+        if(y == "")
+            document.getElementById(el).style.display = 'block';
+        else
+            document.getElementById(el).style.display = 'none';        
     }
 
 </script>
