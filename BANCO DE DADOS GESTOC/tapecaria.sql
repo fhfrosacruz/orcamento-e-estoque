@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02-Dez-2019 às 20:39
--- Versão do servidor: 10.4.6-MariaDB
--- versão do PHP: 7.3.8
+-- Tempo de geração: 01-Out-2020 às 21:24
+-- Versão do servidor: 10.4.13-MariaDB
+-- versão do PHP: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -139,7 +138,15 @@ INSERT INTO `endereco` (`id_endereco`, `rua`, `numero`, `complemento`, `cep`, `b
 (13, 'RUA UM', 12, '12', '13100100', 'PQ UM', 'CAMPINAS', 'SP'),
 (14, '', 0, '', '', '', '', 'SP'),
 (15, 'RUA GERCINO RODRIGUES', 203, '', '73900-00', 'POSSE', 'GOIAS', 'GO'),
-(16, 'RUA GERCINO RODRIGUES', 206, '', '73900-00', 'POSSE', 'GOIAS', 'GO');
+(16, 'RUA GERCINO RODRIGUES', 206, '', '73900-00', 'POSSE', 'GOIAS', 'GO'),
+(17, '', 0, '', '', '', '', 'SP'),
+(18, '', 0, '', '', '', '', 'SP'),
+(19, '', 0, '', '', '', '', 'SP'),
+(20, '', 0, '', '', '', '', 'SP'),
+(21, '', 0, '', '', '', '', 'SP'),
+(22, '', 0, '', '', '', '', 'SP'),
+(23, '', 0, '', '', '', '', 'SP'),
+(24, '', 0, '', '', '', '', 'SP');
 
 -- --------------------------------------------------------
 
@@ -163,7 +170,10 @@ INSERT INTO `funcionario` (`id_funcionario`, `pessoa_id`, `cargo`, `data_adm`, `
 (1, 1, 'GERENTE', '2000-05-08', '0000-00-00'),
 (2, 3, 'FUNCIONARIO', '2019-09-13', NULL),
 (3, 8, 'FUNCIONARIO', '2019-10-09', '0000-00-00'),
-(4, 9, 'FUNCIONARIO', '2020-10-28', '0000-00-00');
+(4, 9, 'FUNCIONARIO', '2020-10-28', '0000-00-00'),
+(5, 16, 'GERENTE', '2020-10-01', '0000-00-00'),
+(6, 17, 'GERENTE', '2020-10-01', '0000-00-00'),
+(7, 18, 'FUNCIONARIO', '2020-10-01', NULL);
 
 -- --------------------------------------------------------
 
@@ -186,7 +196,11 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`id_login`, `usuario`, `senha`, `nivel`, `funcionario_id`) VALUES
 (1, 'FERNANDO', '80b748ee9ea34a7c75e3b6099a851223', 0, 1),
 (2, 'BECCA', '22550861cec7f8db0f007d989dcca128', 1, 2),
-(4, 'TJ', '456c2e75fe0faa57fd1cfd87117e0963', 1, 4);
+(4, 'TJ', '456c2e75fe0faa57fd1cfd87117e0963', 1, 4),
+(5, 'VISITANTE_ADMIN', '4f032cbe86da790b0134f1b234c56f3b', 0, 5),
+(7, 'LORENZO', '80b748ee9ea34a7c75e3b6099a851223', 1, 3),
+(8, 'TESTE', 'cfcd208495d565ef66e7dff9f98764da', 0, 6),
+(9, 'VISITANTE_VISITANTE', '83b90e3c6bbf76217ec5cf77af3f54c0', 1, 7);
 
 -- --------------------------------------------------------
 
@@ -607,7 +621,10 @@ INSERT INTO `pessoa` (`id_pessoa`, `nome`, `cpf`, `data_nasc`, `email`, `telefon
 (6, 'MARIA APARECIDA FRANCIOLLI', '47875487464', '1953-11-04', 'CIDA@HOTMAIL.COM', '(11) 98676-8547', 10),
 (8, 'LORENZO FRANCIOLLI', '99794646464', '1951-06-06', 'LORENZO@HOTMAIL.COM', '(11) 65655-6567', 12),
 (9, 'TIAGO', '12345678978', '2020-12-20', 'RAPHAEL.CSP@GMAIL.COM', '(19) 11999-9999', 13),
-(10, 'VICTOR FRANCIOLLI', '43465468468', '2017-08-04', '', '', 14);
+(10, 'VICTOR FRANCIOLLI', '43465468468', '2017-08-04', '', '', 14),
+(16, 'VISITANTE_ADMIN', '88888888888', '1982-09-05', 'ADMIN@ADMIN.COM.BR', '', 22),
+(17, 'TESTE', '99999999999', '1960-09-08', 'TESTE@TESTE.COM', '', 23),
+(18, 'VISITANTE_VISITANTE', '66666666666', '1980-10-12', 'VISITANTE_VISITANTE@VISITANTE.COM', '', 24);
 
 --
 -- Índices para tabelas despejadas
@@ -692,19 +709,19 @@ ALTER TABLE `empresa`
 -- AUTO_INCREMENT de tabela `endereco`
 --
 ALTER TABLE `endereco`
-  MODIFY `id_endereco` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_endereco` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `id_funcionario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_funcionario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `login`
 --
 ALTER TABLE `login`
-  MODIFY `id_login` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_login` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `material`
@@ -722,7 +739,7 @@ ALTER TABLE `orcamento`
 -- AUTO_INCREMENT de tabela `pessoa`
 --
 ALTER TABLE `pessoa`
-  MODIFY `id_pessoa` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_pessoa` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Restrições para despejos de tabelas
