@@ -56,8 +56,8 @@ $data_saida = mysqli_real_escape_string($conn, $_POST['saida']);
 $atualiza_endereco = "UPDATE endereco SET id_endereco='$endereco_id',rua='$rua',numero='$numero',complemento='$complemento',cep='$cep',bairro='$bairro',cidade='$cidade', estado ='$estado' WHERE id_endereco = '$endereco_id'";
 $atualiza_end = mysqli_query($conn, $atualiza_endereco) or die( mysqli_error($conn));
 
-$atualiza_funcionario = "UPDATE pessoa SET id_pessoa = '$id_pes_func', nome = '$nome', cpf = '$cpf', data_nasc = '$nascimento', email = '$email', telefone = '$telefone', endereco_id = '$endereco_id' WHERE id_pessoa = '$id_pes_func'";
-$atualiza = mysqli_query($conn, $atualiza_funcionario) or die( mysqli_error($conn));
+$atualiza_pessoa = "UPDATE pessoa SET id_pessoa = '$id_pes_func', nome = '$nome', cpf = '$cpf', data_nasc = '$nascimento', email = '$email', telefone = '$telefone', endereco_id = '$endereco_id' WHERE id_pessoa = '$id_pes_func'";
+$atualiza = mysqli_query($conn, $atualiza_pessoa) or die( mysqli_error($conn));
 
 $atualiza_funcionario = "UPDATE funcionario SET id_funcionario = '$id_func', pessoa_id = '$id_pes_func', cargo = '$cargo', data_adm = '$data_adm', data_saida = '$data_saida'  WHERE id_funcionario = '$id_func'";
 $atualiza = mysqli_query($conn, $atualiza_funcionario) or die( mysqli_error($conn));
