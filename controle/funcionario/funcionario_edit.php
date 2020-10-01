@@ -45,17 +45,25 @@ $id_func = mysqli_real_escape_string($conn, $_POST['id']);
 $id_pes_func = mysqli_real_escape_string($conn, $_POST['pessoa_id']);
 $cargo1 = mysqli_real_escape_string($conn, $_POST['cargo']);
 $cargo = strtoupper($cargo1);
+if($cargo == "GERENTE"){
+    $nivel = '0';
+}else{
+    $nivel = '1';
+}
 $data_adm = mysqli_real_escape_string($conn, $_POST['adm']);
 $data_saida = mysqli_real_escape_string($conn, $_POST['saida']);
 
 $atualiza_endereco = "UPDATE endereco SET id_endereco='$endereco_id',rua='$rua',numero='$numero',complemento='$complemento',cep='$cep',bairro='$bairro',cidade='$cidade', estado ='$estado' WHERE id_endereco = '$endereco_id'";
 $atualiza_end = mysqli_query($conn, $atualiza_endereco) or die( mysqli_error($conn));
 
-$atualiza_cliente = "UPDATE pessoa SET id_pessoa = '$id_pes_func', nome = '$nome', cpf = '$cpf', data_nasc = '$nascimento', email = '$email', telefone = '$telefone', endereco_id = '$endereco_id' WHERE id_pessoa = '$id_pes_func'";
-$atualiza = mysqli_query($conn, $atualiza_cliente) or die( mysqli_error($conn));
+$atualiza_funcionario = "UPDATE pessoa SET id_pessoa = '$id_pes_func', nome = '$nome', cpf = '$cpf', data_nasc = '$nascimento', email = '$email', telefone = '$telefone', endereco_id = '$endereco_id' WHERE id_pessoa = '$id_pes_func'";
+$atualiza = mysqli_query($conn, $atualiza_funcionario) or die( mysqli_error($conn));
 
 $atualiza_funcionario = "UPDATE funcionario SET id_funcionario = '$id_func', pessoa_id = '$id_pes_func', cargo = '$cargo', data_adm = '$data_adm', data_saida = '$data_saida'  WHERE id_funcionario = '$id_func'";
 $atualiza = mysqli_query($conn, $atualiza_funcionario) or die( mysqli_error($conn));
+
+$atualiza_login = "UPDATE login SET nivel = '$nivel' WHERE funcionario_id = '$id_func'";
+$atualiza = mysqli_query($conn, $atualiza_login) or die( mysqli_error($conn));
 
 mysqli_close($conn);
 header('Location: ../../funcionarios.php?pesquisa=&pagina=1#');

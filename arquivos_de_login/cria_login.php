@@ -5,7 +5,6 @@ require_once 'functions.php';
 require_once 'check_login.php';
 
 $nome = $_POST['nome'];
-$nivel = $_POST['cargo_log'];
 $usuario1 = $_POST['usuario'];
 $usuario = strtoupper($usuario1);
 $senha = $_POST['senha'];
@@ -28,10 +27,21 @@ if ($senha == $confirma){
     $passwordHash = make_hash($senha);
 
     $PDO = db_connect();
+    $pega_nivel = "SELECT cargo FROM funcionario WHERE id_funcionario = $nome";   
+    $stmt = $PDO->prepare($pega_nivel);
+    $stmt->execute();
+    $rest = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if($rest['cargo'] == "FUNCIONARIO"){
+      $nivel = '1';
+    }else{
+      $nivel = '0';
+    }     
     $sql = "INSERT INTO `login`(`usuario`, `senha`, `nivel`, `funcionario_id`) VALUES ('$usuario', '$passwordHash', '$nivel', '$nome') ";
     $stmt = $PDO->prepare($sql);
     $stmt->execute();
     //echo $sql;
+    
 
     echo"<script type=\"text/javascript\">alert('Seu Usuario foi criado com sucesso'); window.location='../funcionarios.php';</script>";
   }else{
