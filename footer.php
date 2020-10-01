@@ -157,13 +157,12 @@ $('#loginModal').on('show.bs.modal', function (event) {
   // Extract info from data-* attributes
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('Criar login')
-  modal.find('#nome').val(recipient_nome)
-  modal.find('#cargo_log').val(recipient_cargo_log)
-  modal.find('#usuario').val(recipient_usuario)
-  modal.find('#senha').val(recipient_senha)
-  modal.find('#conf_senha').val(recipient_conf_senha)
+    var modal = $(this)
+    modal.find('.modal-title').text('Criar login')
+    modal.find('#nome').val(recipient_nome)
+    modal.find('#usuario').val(recipient_usuario)
+    modal.find('#senha').val(recipient_senha)
+    modal.find('#conf_senha').val(recipient_conf_senha)
 })
 </script>
 <!-- FIM MODAL LOGIN -->

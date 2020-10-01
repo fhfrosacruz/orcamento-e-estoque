@@ -1,8 +1,21 @@
-<script>
+<script type="text/javascript">
+
 function submitar( idPagina ){
  document.getElementById('pagina').value=idPagina;
  document.getElementById('pesquisa_funcionario').submit()
 }
+
+$(document).on('change', '#nome', function () {
+      var value  = $(this).val();
+      var option = $(this).find("option:selected");
+
+      var cargo  = option.data('cargo');
+      
+      
+      $('#cargo').val(cargo);
+     
+   });
+
 </script>
 <script type="text/javascript" src="https://kryogenix.org/code/browser/sorttable/sorttable.js"></script> <!-- ordena a tabela chamada em class = 'sortable' -->
 <?php
@@ -66,7 +79,8 @@ $incio = ($quantidade_pg*$pagina)-$quantidade_pg;
 $result_funcionarios = "SELECT * FROM funcionario INNER JOIN pessoa ON id_pessoa = pessoa_id INNER JOIN endereco ON id_endereco = endereco_id LIMIT $incio, $quantidade_pg";
 $resultado_funcionarios = mysqli_query($conn, $result_funcionarios);
 
-}
+}				
+    						
 ?>
 
 <formbotao>
@@ -196,8 +210,8 @@ $resultado_funcionarios = mysqli_query($conn, $result_funcionarios);
               <input type="date" name="saida" class="form-control" id="saida">
             </div>
             <div class="form-group">
-              <label for="recipient_cpf" class="control-label">cpf:<?php echo $funcionario['cpf']; ?></label>
-              <input name="cpf" class="form-control" id="cpf">
+              <label for="recipient_cpf" class="control-label">cpf:</label>
+              <input name="cpf" class="form-control" id="cpf" onKeyPress="return Apenas_Numeros(event);" maxlength = "11">
             </div>
               <div class="form-groupinput-append date" data-date-format="dd-mm-yyyy">
                 <label for="recipient_nasc" class="control-label">Nascimento:</label>
@@ -317,15 +331,15 @@ $resultado_funcionarios = mysqli_query($conn, $result_funcionarios);
             </div>
             <div class="form-group">
               <label for="recipient_cpf" class="control-label">cpf:</label>
-              <input size="11" maxlength="11" onKeyPress="return Apenas_Numeros(event);" name="cpf" class="form-control" id="cpf">
+              <input required size="11" maxlength="11" onKeyPress="return Apenas_Numeros(event);" name="cpf" class="form-control" id="cpf">
             </div>
               <div class="form-groupinput-append date" data-date-format="dd-mm-yyyy">
                 <label for="recipient_nasc" class="control-label">Nascimento:</label>
                 <input type="date" required name="nasc" onblur="calcular_idade(this);" class="form-control" id="nasc">
               </div>
             <div class="form-group">
-              <label for="recipient_email" class="control-label">E-mail:</label>
-              <input name="email" class="form-control" id="email">
+              <label for="recipient_email" class="control-label" >E-mail:</label>
+              <input required name="email" class="form-control" id="email" >
             </div>
             <div class="form-group">
               <label for="recipient_telefone" class="control-label">telefone:</label>
@@ -415,29 +429,22 @@ $resultado_funcionarios = mysqli_query($conn, $result_funcionarios);
           <form method="POST" action="./arquivos_de_login/cria_login.php">
             <div class="form-group">
               <label for="recipient_nome" class="control-label">Nome:</label>
-              <select name="nome" class="form-control" id="nome">
-                <option>SELECIONE O FUNCIONARIO</option>
-                <?php
-    						$sql = "SELECT nome, id_funcionario FROM funcionario f INNER JOIN pessoa p ON p.id_pessoa = f.pessoa_id LEFT JOIN login l ON l.funcionario_id = f.id_funcionario WHERE l.funcionario_id IS NULL";
-    						$result_sql = mysqli_query($conn, $sql);
+                <select name="nome" type="text" class="form-control" id="nome">
+                  <option>SELECIONE O FUNCIONARIO</option>
+                  <?php
+                  $sql = "SELECT nome, cargo, id_funcionario FROM funcionario f INNER JOIN pessoa p ON p.id_pessoa = f.pessoa_id LEFT JOIN login l ON l.funcionario_id = f.id_funcionario WHERE l.funcionario_id IS NULL";
+                  $result_sql = mysqli_query($conn, $sql);
 
-    						while ($nome_func = mysqli_fetch_array($result_sql)) {?>
-    							<option value="<?php echo $nome_func['id_funcionario']; ?>"><?php echo $nome_func['nome']; ?></option><?php
-    						}
-    						?>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="recipient_cargo_log" class="control-label">Cargo:</label>
-              <select name="cargo_log" class="form-control" id="cargo_log">
-                <option value="1" selected>FUNCIONARIO</option>
-                <option value="0">GERENTE</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="recipient_usuario" class="control-label">Usuário:</label>
-              <input name="usuario" class="form-control" id="usuario">
-            </div>
+                  while ($nome_func = mysqli_fetch_array($result_sql)) {?>
+                    <option value="<?php echo $nome_func['id_funcionario']; ?>" data-cargo="gerente"><?php echo $nome_func['nome']; ?></option><?php
+                  }
+                  ?>
+                </select>
+            </div>             
+              <div class="form-group">
+                <label for="recipient_usuario" class="control-label">Usuário:</label>
+                <input name="usuario" class="form-control" id="usuario">
+              </div>
             <div class="form-group">
               <label for="recipient_senha" class="control-label">Senha:</label>
               <input type="password" name="senha" class="form-control" id="senha">
@@ -484,6 +491,8 @@ function calcular_idade() {
   }
 
 }
+
+
 </script>
 
 <?php
