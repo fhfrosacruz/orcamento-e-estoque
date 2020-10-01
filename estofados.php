@@ -28,32 +28,36 @@ require './conexao/banco.php';
   <table>
   <tr>
     <td>
-    <label class="control-label">CLIENTE:</label>
-    <select name="cliente_orca" class="form-control" id="cliente_orca">
-      <option value=""></option>
-      <?php
-      $sql = "SELECT * FROM pessoa p LEFT JOIN funcionario f ON f.pessoa_id = p.id_pessoa WHERE f.id_funcionario IS NULL";
-      $result_sql = mysqli_query($conn, $sql);
+      <div id="esconder_cli" display:none; nome="esconder_cli">
+        <label class="control-label">CLIENTE:</label>
+        <select name="cliente_orca" class="form-control" id="cliente_orca" onclick="Mudarestado_emp('esconder_emp')">
+          <option value=""></option>
+          <?php
+          $sql = "SELECT * FROM pessoa p LEFT JOIN funcionario f ON f.pessoa_id = p.id_pessoa WHERE f.id_funcionario IS NULL";
+          $result_sql = mysqli_query($conn, $sql);
 
-      while ($cliente_orca = mysqli_fetch_array($result_sql)) {?>
-        <option value="<?php echo $cliente_orca['nome']; ?>"><?php echo $cliente_orca['nome']; ?></option><?php
-      }
-      ?>
-    </select>
+          while ($cliente_orca = mysqli_fetch_array($result_sql)) {?>
+            <option value="<?php echo $cliente_orca['nome']; ?>"><?php echo $cliente_orca['nome']; ?></option><?php
+          }
+          ?>
+        </select>
+      </div>
     </td>
   <td>
-    <label class="control-label">EMPRESA:</label>
-    <select name="empresa_orca" class="form-control" id="empresa_orca">
-      <option value=""></option>
-      <?php
-      $sql = "SELECT * FROM empresa";
-      $result_sql = mysqli_query($conn, $sql);
+    <div id="esconder_emp" display:none; nome="esconder_emp">
+      <label class="control-label">EMPRESA:</label>
+      <select name="empresa_orca" class="form-control" id="empresa_orca" onclick="Mudarestado_cli('esconder_cli')">
+        <option value=""></option>
+        <?php
+        $sql = "SELECT * FROM empresa";
+        $result_sql = mysqli_query($conn, $sql);
 
-      while ($empresa_orca = mysqli_fetch_array($result_sql)) {?>
-        <option value="<?php echo $empresa_orca['razao_social']; ?>"><?php echo $empresa_orca['razao_social']; ?></option><?php
-      }
-      ?>
-    </select>
+        while ($empresa_orca = mysqli_fetch_array($result_sql)) {?>
+          <option value="<?php echo $empresa_orca['razao_social']; ?>"><?php echo $empresa_orca['razao_social']; ?></option><?php
+        }
+        ?>
+      </select>
+    </div>
     </td>
     <td>
     <label class="control-label">TIPO:</label>
@@ -426,115 +430,121 @@ require './conexao/banco.php';
 </div>
 
 <script>
-// inicio almofada
- $("#almofada_botao").change(function() {//id select
-    $('#qto_almofada').hide(); // id da div
-    if(this.value != "") //value do select
-      $('#qto_almofada').show(); // id do div
+  // inicio almofada
+  $("#almofada_botao").change(function() {//id select
+      $('#qto_almofada').hide(); // id da div
+      if(this.value != "") //value do select
+        $('#qto_almofada').show(); // id do div
 
- });
- $("#almofada").change(function() {
-    $('#outros_almofadas').hide();
-    if(this.value == "outro")
-      $('#outros_almofadas').show();
+  });
+  $("#almofada").change(function() {
+      $('#outros_almofadas').hide();
+      if(this.value == "outro")
+        $('#outros_almofadas').show();
 
- });
- $("#almofada").change(function() {
-    $('#medidas_almofadas').hide();
+  });
+  $("#almofada").change(function() {
+      $('#medidas_almofadas').hide();
+      if(this.value != "")
+        $('#medidas_almofadas').show();
+
+  });
+  $("#tecido_almofada").change(function() {
+      $('#seguraca_almofadas').hide();
+      if(this.value != "")
+        $('#seguraca_almofadas').show();
+
+  });
+  // fim almofada 
+
+
+  // inicio assento 
+  $("#tecido_assento").change(function() {
+      $('#seguraca_assentos').hide();
+      if(this.value != "")
+        $('#seguraca_assentos').show();
+
+  });
+  $("#assento_botao").change(function() {
+      $('#qto_assento').hide();
+      if(this.value != "")
+        $('#qto_assento').show();
+
+  });
+  $("#assento").change(function() {
+      $('#outros_assentos').hide();
+      if(this.value == "outro")
+        $('#outros_assentos').show();
+
+  });
+  $("#assento").change(function() {
+      $('#medidas_assentos').hide();
+      if(this.value != "")
+        $('#medidas_assentos').show();
+
+  });
+
+  // fim assento 
+
+
+  // inicio encosto
+  $("#tecido_encosto").change(function() {
+    $('#seguraca_encostos').hide();
     if(this.value != "")
-      $('#medidas_almofadas').show();
+      $('#seguraca_encostos').show();
 
- });
- $("#tecido_almofada").change(function() {
-    $('#seguraca_almofadas').hide();
-    if(this.value != "")
-      $('#seguraca_almofadas').show();
+  });
+  $("#encosto_botao").change(function() {
+      $('#qto_encosto').hide();
+      if(this.value != "")
+        $('#qto_encosto').show();
 
- });
-// fim almofada 
+  });
+  $("#encosto").change(function() {
+      $('#outros_encostos').hide();
+      if(this.value == "outro")
+        $('#outros_encostos').show();
 
+  });
+  $("#encosto").change(function() {
+      $('#medidas_encostos').hide();
+      if(this.value != "")
+        $('#medidas_encostos').show();
 
-// inicio assento 
- $("#tecido_assento").change(function() {
-    $('#seguraca_assentos').hide();
-    if(this.value != "")
-      $('#seguraca_assentos').show();
+  });
 
- });
- $("#assento_botao").change(function() {
-    $('#qto_assento').hide();
-    if(this.value != "")
-      $('#qto_assento').show();
+    // fim encosto 
 
- });
- $("#assento").change(function() {
-    $('#outros_assentos').hide();
-    if(this.value == "outro")
-      $('#outros_assentos').show();
+  // inicio estrutura 
+  $("#estrutura").change(function() {
+      $('#medidas_estrutura').hide();
+      if(this.value != "")
+        $('#medidas_estrutura').show();
 
- });
- $("#assento").change(function() {
-    $('#medidas_assentos').hide();
-    if(this.value != "")
-      $('#medidas_assentos').show();
+  });
 
- });
+  // fim estrutura 
 
-// fim assento 
+//funções para esconder um ou outro tipo de cliente, para se gerar um orçamento, por o orçamento é gerado para um cliente ou uma empresa
 
+  function Mudarestado_emp(el) {
+        var x = document.getElementById('cliente_orca').value;
+               
+        //var display = document.getElementById(el).style.display;
+        if(x == "")
+            document.getElementById(el).style.display = 'block';
+        else
+            document.getElementById(el).style.display = 'none';        
+    }
 
-// inicio encosto
-$("#tecido_encosto").change(function() {
-   $('#seguraca_encostos').hide();
-   if(this.value != "")
-     $('#seguraca_encostos').show();
-
-});
- $("#encosto_botao").change(function() {
-    $('#qto_encosto').hide();
-    if(this.value != "")
-      $('#qto_encosto').show();
-
- });
- $("#encosto").change(function() {
-    $('#outros_encostos').hide();
-    if(this.value == "outro")
-      $('#outros_encostos').show();
-
- });
- $("#encosto").change(function() {
-    $('#medidas_encostos').hide();
-    if(this.value != "")
-      $('#medidas_encostos').show();
-
- });
-
-// fim encosto 
-
-// inicio estrutura 
- $("#estrutura").change(function() {
-    $('#medidas_estrutura').hide();
-    if(this.value != "")
-      $('#medidas_estrutura').show();
-
- });
-
- // fim estrutura 
-
-
-function verifica_dados() {
-  var x = document.getElementById('cliente_orca').value;
-  var y = document.getElementById('empresa_orca').value;
-  //var z = document.getElementById('estoque').value;
-
-    if (x == "" && y == "" || x != "" && y != "") {
-         alert("VOCE DEVE GERAR UM ORÇAMENTO PRA UM CLIENTE OU EMPRESA, NÃO PARA OS DOIS");
-        // alert(z);
-        return false;
-      }else {
-
-            //$("#estoque").is(':checked');
-      }
+    function Mudarestado_cli(el) {
+        
+        var y = document.getElementById('empresa_orca').value;       
+        //var display = document.getElementById(el).style.display;
+        if(y == "")
+            document.getElementById(el).style.display = 'block';
+        else
+            document.getElementById(el).style.display = 'none';        
     }
 
 </script>
